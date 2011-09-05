@@ -1,0 +1,16 @@
+TARGET=libxml2.a
+
+CFLAGS=-Iinclude -Wall -O3 -fPIC -DLIBXML_THREAD_ENABLED
+
+objects=SAX.o entities.o encoding.o error.o parserInternals.o parser.o tree.o hash.o list.o xmlIO.o xmlmemory.o uri.o valid.o xlink.o HTMLparser.o HTMLtree.o debugXML.o xpath.o xpointer.o xinclude.o nanohttp.o nanoftp.o DOCBparser.o catalog.o globals.o threads.o c14n.o xmlstring.o xmlregexp.o xmlschemas.o xmlschemastypes.o xmlunicode.o xmlreader.o relaxng.o dict.o SAX2.o xmlwriter.o legacy.o chvalid.o pattern.o xmlsave.o xmlmodule.o schematron.o
+
+all: $(TARGET)
+
+%.o: %.c
+	$(CC) -o $@ $(CFLAGS) -c $<
+
+$(TARGET): $(objects)
+	$(AR) rs $(TARGET) $(objects)
+	
+clean:
+	rm -f *.o $(TARGET)
