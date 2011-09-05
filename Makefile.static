@@ -2,6 +2,23 @@ TARGET=libxml2.a
 
 CFLAGS=-Iinclude -Wall -O3 -fPIC -DLIBXML_THREAD_ENABLED
 
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+  check_arch = $(shell if as -arch $(1) < /dev/null > /dev/null; then echo yes; else echo no; fi)
+  ifeq ($(call check_arch,i386), yes)
+    CFLAGS+=-arch i386
+  endif
+  ifeq ($(call check_arch,x86_64), yes)
+    CFLAGS+=-arch x86_64
+  endif
+  ifeq ($(call check_arch,ppc), yes)
+    CFLAGS+=-arch ppc
+  endif
+  ifeq ($(call check_arch,ppc64), yes)
+    CFLAGS+=-arch ppc64
+  endif
+endif
+
 objects=SAX.o entities.o encoding.o error.o parserInternals.o parser.o tree.o hash.o list.o xmlIO.o xmlmemory.o uri.o valid.o xlink.o HTMLparser.o HTMLtree.o debugXML.o xpath.o xpointer.o xinclude.o nanohttp.o nanoftp.o DOCBparser.o catalog.o globals.o threads.o c14n.o xmlstring.o xmlregexp.o xmlschemas.o xmlschemastypes.o xmlunicode.o xmlreader.o relaxng.o dict.o SAX2.o xmlwriter.o legacy.o chvalid.o pattern.o xmlsave.o xmlmodule.o schematron.o
 
 all: $(TARGET)
@@ -10,7 +27,7 @@ all: $(TARGET)
 	$(CC) -o $@ $(CFLAGS) -c $<
 
 $(TARGET): $(objects)
-	$(AR) rs $(TARGET) $(objects)
+	$(AR) rcs $(TARGET) $^
 	
 clean:
 	rm -f *.o $(TARGET)
