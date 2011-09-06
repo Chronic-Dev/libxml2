@@ -98,3 +98,5 @@ xmlconf
 xmllint
 xstc/Makefile
 xstc/Makefile.in
+*.o
+libxml2.a
