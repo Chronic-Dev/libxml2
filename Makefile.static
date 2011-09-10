@@ -1,6 +1,6 @@
 TARGET=libxml2.a
 
-CFLAGS=-m32 -Iinclude -Wall -O3 -fPIC -DLIBXML_THREAD_ENABLED -DHAVE_CONFIG_H
+CFLAGS=-m32 -Iinclude -Wall -O3 -Wno-pointer-sign -DHAVE_CONFIG_H
 
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
@@ -11,6 +11,47 @@ ifeq ($(UNAME), Darwin)
   ifeq ($(call check_arch,ppc), yes)
     CFLAGS+=-arch ppc
   endif
+  CFLAGS+=-fPIC \
+	-DHAVE_SYS_SOCKET_H=1 \
+	-DHAVE_NETINET_IN_H=1 \
+	-DHAVE_ARPA_INET_H=1 \
+	-DHAVE_NETDB_H=1 \
+	-DHAVE_ARPA_NAMESER_H=1 \
+	-DHAVE_RESOLV_H=1 \
+	-DHAVE_POLL_H=1 \
+	-DHAVE_SYS_SELECT_H=1 \
+	-DSUPPORT_IP6=1 \
+	-DHAVE_PTHREAD_H=1 \
+	-DLIBXML_THREAD_ENABLED=1 \
+	-DLIBXML_ICONV_ENABLED
+endif
+ifeq ($(UNAME), Linux)
+  CFLAGS+=-fPIC \
+	-DHAVE_SYS_SOCKET_H=1 \
+	-DHAVE_NETINET_IN_H=1 \
+	-DHAVE_ARPA_INET_H=1 \
+	-DHAVE_NETDB_H=1 \
+	-DHAVE_ARPA_NAMESER_H=1 \
+	-DHAVE_RESOLV_H=1 \
+	-DHAVE_POLL_H=1 \
+	-DHAVE_SYS_SELECT_H=1 \
+	-DSUPPORT_IP6=1 \
+	-DHAVE_PTHREAD_H=1 \
+	-DLIBXML_THREAD_ENABLED=1 \
+	-DLIBXML_ICONV_ENABLED=1
+endif
+
+WIN32=
+ifeq ($(findstring CYG,$(UNAME)), CYG)
+  WIN32=1
+  CC=gcc-3
+endif
+ifeq ($(findstring MINGW,$(UNAME)), MINGW)
+  WIN32=1
+  CC=gcc
+endif
+ifdef WIN32
+  CFLAGS+=-DWIN32 -DHAVE_WIN32_THREADS=1
 endif
 
 objects=SAX.o entities.o encoding.o error.o parserInternals.o parser.o tree.o hash.o list.o xmlIO.o xmlmemory.o uri.o valid.o xlink.o HTMLparser.o HTMLtree.o debugXML.o xpath.o xpointer.o xinclude.o nanohttp.o nanoftp.o DOCBparser.o catalog.o globals.o threads.o c14n.o xmlstring.o xmlregexp.o xmlschemas.o xmlschemastypes.o xmlunicode.o xmlreader.o relaxng.o dict.o SAX2.o xmlwriter.o legacy.o chvalid.o pattern.o xmlsave.o xmlmodule.o schematron.o

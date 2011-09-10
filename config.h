@@ -5,10 +5,10 @@
 /* #undef HAVE_ANSIDECL_H */
 
 /* Define to 1 if you have the <arpa/inet.h> header file. */
-#define HAVE_ARPA_INET_H 1
+/* #undef HAVE_ARPA_INET_H */
 
 /* Define to 1 if you have the <arpa/nameser.h> header file. */
-#define HAVE_ARPA_NAMESER_H 1
+/* #undef HAVE_ARPA_NAMESER_H */
 
 /* Whether struct sockaddr::__ss_family exists */
 /* #undef HAVE_BROKEN_SS_FAMILY */
@@ -116,22 +116,22 @@
 /* #undef HAVE_NDIR_H */
 
 /* Define to 1 if you have the <netdb.h> header file. */
-#define HAVE_NETDB_H 1
+/* #undef HAVE_NETDB_H */
 
 /* Define to 1 if you have the <netinet/in.h> header file. */
-#define HAVE_NETINET_IN_H 1
+/* #undef HAVE_NETINET_IN_H */
 
 /* Define to 1 if you have the <poll.h> header file. */
-#define HAVE_POLL_H 1
+/* #undef HAVE_POLL_H */
 
 /* Define to 1 if you have the `printf' function. */
 #define HAVE_PRINTF 1
 
 /* Define if <pthread.h> is there */
-#define HAVE_PTHREAD_H /**/
+/* #undef HAVE_PTHREAD_H */
 
 /* Define to 1 if you have the <resolv.h> header file. */
-#define HAVE_RESOLV_H 1
+/* #undef HAVE_RESOLV_H */
 
 /* Have shl_load based dso */
 /* #undef HAVE_SHLLOAD */
@@ -193,10 +193,10 @@
 /* #undef HAVE_SYS_NDIR_H */
 
 /* Define to 1 if you have the <sys/select.h> header file. */
-#define HAVE_SYS_SELECT_H 1
+/* #undef HAVE_SYS_SELECT_H */
 
 /* Define to 1 if you have the <sys/socket.h> header file. */
-#define HAVE_SYS_SOCKET_H 1
+/* #undef HAVE_SYS_SOCKET_H */
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #define HAVE_SYS_STAT_H 1
@@ -272,7 +272,7 @@
 #define STDC_HEADERS 1
 
 /* Support for IPv6 */
-#define SUPPORT_IP6 /**/
+/* #undef SUPPORT_IP6 */
 
 /* Version number of package */
 #define VERSION "2.7.8"
