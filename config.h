@@ -59,7 +59,7 @@
 #define HAVE_FTIME 1
 
 /* Define if getaddrinfo is there */
-#define HAVE_GETADDRINFO /**/
+/* #undef HAVE_GETADDRINFO */
 
 /* Define to 1 if you have the `gettimeofday' function. */
 #define HAVE_GETTIMEOFDAY 1

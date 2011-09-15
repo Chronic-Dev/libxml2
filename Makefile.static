@@ -12,6 +12,7 @@ ifeq ($(UNAME), Darwin)
     CFLAGS+=-arch ppc
   endif
   CFLAGS+=-fPIC \
+	-DHAVE_GETADDRINFO=1 \
 	-DHAVE_SYS_SOCKET_H=1 \
 	-DHAVE_NETINET_IN_H=1 \
 	-DHAVE_ARPA_INET_H=1 \
@@ -27,6 +28,7 @@ ifeq ($(UNAME), Darwin)
 endif
 ifeq ($(UNAME), Linux)
   CFLAGS+=-fPIC \
+	-DHAVE_GETADDRINFO=1 \
 	-DHAVE_SYS_SOCKET_H=1 \
 	-DHAVE_NETINET_IN_H=1 \
 	-DHAVE_ARPA_INET_H=1 \
